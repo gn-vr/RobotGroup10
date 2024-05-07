@@ -11,8 +11,26 @@
 #define IR_3 8
 #define IR_4 12
 
+#define MOTOR_PIN1 3
+#define MOTOR_PIN2 5
+#define MOTOR_PIN3 6
+#define MOTOR_PIN4 9
+
+
 unsigned long colorSensorMillis = 0;
 unsigned long irSensorMillis = 0; // Timer to track the last report of teh IR sensors
+
+// Test motor control
+void motorTest() {
+  motorControl(255, 255);
+  delay(1000);
+  motorControl(0, 0);
+  delay(100);
+  motorControl(255, -255);
+  delay(500);
+  motorControl(0,0);
+  delay(100);
+}
 
 void setup() {
 // put your setup code here, to run once:
@@ -22,6 +40,15 @@ void setup() {
   pinMode(IR_2, INPUT);
   pinMode(IR_3, INPUT);
   pinMode(IR_4, INPUT);
+
+  // Setup Motor Pins
+  pinMode(MOTOR_PIN1, OUTPUT);
+  pinMode(MOTOR_PIN2, OUTPUT);
+  pinMode(MOTOR_PIN3, OUTPUT);
+  pinMode(MOTOR_PIN4, OUTPUT);
+
+  Serial.begin(9600);
+
 }
 
 void loop() {
@@ -29,6 +56,8 @@ void loop() {
 
   // Get the current run time in milliseconds
   unsigned long currentMillis = millis();
+
+  // Serial.print("dababy");
 
   // Check the states of the IR sensors every 500ms
   if (currentMillis - irSensorMillis >=500) {
@@ -41,4 +70,7 @@ void loop() {
     colorSensorMillis = currentMillis;
     readColorSensor();
   }
+
+  motorTest();
+  
 }
