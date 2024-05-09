@@ -16,6 +16,9 @@
 #define MOTOR_PIN3 6
 #define MOTOR_PIN4 9
 
+#define TRIG_PIN 10
+#define ECHO_PIN 11
+
 
 unsigned long colorSensorMillis = 0;
 unsigned long irSensorMillis = 0; // Timer to track the last report of teh IR sensors
@@ -70,6 +73,18 @@ void loop() {
     colorSensorMillis = currentMillis;
     readColorSensor();
   }
+
+  // Read the infrared sensor
+  long duration, distance;
+  digitalWrite(TRIG_PIN, LOW);
+  digitalWrite(TRIG_PIN, HIGH);
+  digitalWrite(TRIG_PIN, LOW);
+
+  duration = pulseIn(ECHO_PIN, HIGH);
+  distance = duration * 0.034 / 2;
+
+  Serial.print("Distance: ");
+  Serial.println(distance);
 
   motorTest();
   
