@@ -21,7 +21,9 @@
 
 
 unsigned long colorSensorMillis = 0;
-unsigned long irSensorMillis = 0; // Timer to track the last report of teh IR sensors
+unsigned long irSensorMillis = 0; // Timer to track the last report of the IR sensors
+unsigned long ultrasonicSensorMillis = 0;
+
 
 // Test motor control
 void motorTest() {
@@ -50,6 +52,9 @@ void setup() {
   pinMode(MOTOR_PIN3, OUTPUT);
   pinMode(MOTOR_PIN4, OUTPUT);
 
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
+
   Serial.begin(9600);
 
 }
@@ -75,16 +80,12 @@ void loop() {
   }
 
   // Read the infrared sensor
-  long duration, distance;
-  digitalWrite(TRIG_PIN, LOW);
-  digitalWrite(TRIG_PIN, HIGH);
-  digitalWrite(TRIG_PIN, LOW);
 
-  duration = pulseIn(ECHO_PIN, HIGH);
-  distance = duration * 0.034 / 2;
+   if (currentMillis - ultrasonicSensorMillis >= 250) {
+    ultrasonicSensorMillis = currentMillis;
+    readUltrasonicSensor();
+  }
 
-  Serial.print("Distance: ");
-  Serial.println(distance);
 
   motorTest();
   
