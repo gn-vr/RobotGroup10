@@ -24,6 +24,8 @@ unsigned long colorSensorMillis = 0;
 unsigned long irSensorMillis = 0; // Timer to track the last report of the IR sensors
 unsigned long ultrasonicSensorMillis = 0;
 
+String currentState = "Null";
+
 
 // Test motor control
 void motorTest() {
