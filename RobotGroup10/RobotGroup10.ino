@@ -37,6 +37,7 @@ void motorTest() {
   delay(500);
   motorControl(0,0);
   delay(100);
+  Serial.println("Motor code is running!");
 }
 
 void setup() {
@@ -67,7 +68,7 @@ void loop() {
   // Get the current run time in milliseconds
   unsigned long currentMillis = millis();
 
-  // Serial.print("dababy");
+  Serial.print("dababy");
 
   // Check the states of the IR sensors every 500ms
   if (currentMillis - irSensorMillis >=500) {
@@ -88,7 +89,6 @@ void loop() {
     readUltrasonicSensor();
   }
 
-
-  motorTest();
+robotLogic();
   
 }
