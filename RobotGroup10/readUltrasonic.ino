@@ -11,4 +11,6 @@ void readUltrasonicSensor() {
 
   Serial.print("Distance: ");
   Serial.println(distance);
+  
+  currentDistance = distance;
 }

@@ -23,8 +23,19 @@
 unsigned long colorSensorMillis = 0;
 unsigned long irSensorMillis = 0; // Timer to track the last report of the IR sensors
 unsigned long ultrasonicSensorMillis = 0;
+// Get the current run time in milliseconds
+unsigned long currentMillis;
 
+// State Logic
 String currentState = "Null";
+String oldCurrentState = "Null";
+
+String turnDirection = "";
+String lastTurnDirection = "";
+bool isTurning = false;
+bool wallDetected = false;
+
+int currentDistance = 0;
 
 
 // Test motor control
@@ -66,9 +77,7 @@ void loop() {
   // put your main code here, to run repeatedly:
 
   // Get the current run time in milliseconds
-  unsigned long currentMillis = millis();
-
-  Serial.print("dababy");
+  currentMillis = millis();
 
   // Check the states of the IR sensors every 500ms
   if (currentMillis - irSensorMillis >=500) {
