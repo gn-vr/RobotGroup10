@@ -1,8 +1,8 @@
 void motorControl(int speed1, int speed2) {
 
   // Global speed multipliers for each motor
-  float motor1Multiplier = 1.0;
-  float motor2Multiplier = 1.0;
+  float motor1Multiplier = 0.95;
+  float motor2Multiplier = 0.85;
 
   // Apply the multipliers to the motor speeds
   int adjustedSpeed1 = speed1 * motor1Multiplier;

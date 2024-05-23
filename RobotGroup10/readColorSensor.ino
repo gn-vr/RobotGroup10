@@ -15,7 +15,8 @@ void readColorSensor() {
   int avgGreen = sumGreen / samples;
   int avgBlue = sumBlue / samples;
   int avgWhite = sumWhite / samples;
-
+  
+/*
   Serial.print("Average Color Sensor Readings: ");
   Serial.print(" R= ");
   Serial.print(avgRed);
@@ -25,4 +26,5 @@ void readColorSensor() {
   Serial.print(avgBlue);
   Serial.print(" W(clear)= ");
   Serial.println(avgWhite);
+  */
 }

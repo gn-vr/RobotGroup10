@@ -69,6 +69,13 @@ void setup() {
   pinMode(TRIG_PIN, OUTPUT);
   pinMode(ECHO_PIN, INPUT);
 
+  // Setup onboard RGB LED pins
+  /*
+  WifiDrv::pinMode(LED_R, OUTPUT);
+  WifiDrv::pinMode(LED_G, OUTPUT);
+  WifiDrv::pinMode(LED_B, OUTPUT);
+  */
+
   Serial.begin(9600);
 
 }
@@ -80,20 +87,20 @@ void loop() {
   currentMillis = millis();
 
   // Check the states of the IR sensors every 500ms
-  if (currentMillis - irSensorMillis >=500) {
+  if (currentMillis - irSensorMillis >=20) {
     irSensorMillis = currentMillis;
     readInfrared();
   }
 
   // Read the color sensor
-  if (currentMillis - colorSensorMillis >= 250) {
+  if (currentMillis - colorSensorMillis >=20) {
     colorSensorMillis = currentMillis;
     readColorSensor();
   }
 
   // Read the infrared sensor
 
-   if (currentMillis - ultrasonicSensorMillis >= 250) {
+   if (currentMillis - ultrasonicSensorMillis >=20) {
     ultrasonicSensorMillis = currentMillis;
     readUltrasonicSensor();
   }
