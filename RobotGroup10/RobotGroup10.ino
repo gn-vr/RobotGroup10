@@ -1,5 +1,6 @@
 // hey there is code in here!!!
 #include <tcs3200.h>
+#include <WiFiNINA.h>
 #define COLOR_0 A0
 #define COLOR_1 A1
 #define COLOR_2 A2
@@ -19,6 +20,10 @@
 #define TRIG_PIN 10
 #define ECHO_PIN 11
 
+#define LED_R 25
+#define LED_G 26
+#define LED_B 27
+
 
 unsigned long colorSensorMillis = 0;
 unsigned long irSensorMillis = 0; // Timer to track the last report of the IR sensors
@@ -35,7 +40,7 @@ String lastTurnDirection = "";
 bool isTurning = false;
 bool wallDetected = false;
 
-int currentDistance = 0;
+int currentDistance = 10;
 
 
 // Test motor control
@@ -70,11 +75,11 @@ void setup() {
   pinMode(ECHO_PIN, INPUT);
 
   // Setup onboard RGB LED pins
-  /*
-  WifiDrv::pinMode(LED_R, OUTPUT);
-  WifiDrv::pinMode(LED_G, OUTPUT);
-  WifiDrv::pinMode(LED_B, OUTPUT);
-  */
+  
+  WiFiDrv::pinMode(LED_R, OUTPUT);
+  WiFiDrv::pinMode(LED_G, OUTPUT);
+  WiFiDrv::pinMode(LED_B, OUTPUT);
+  
 
   Serial.begin(9600);
 
