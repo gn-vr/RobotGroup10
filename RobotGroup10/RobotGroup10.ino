@@ -98,6 +98,7 @@ void loop() {
   }
 
   // Read the color sensor
+  
   if (currentMillis - colorSensorMillis >=20) {
     colorSensorMillis = currentMillis;
     readColorSensor();

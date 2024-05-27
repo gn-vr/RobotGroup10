@@ -68,6 +68,11 @@ void motorLogic() {
 
    } else {
 
+    if(IRvalues[1] == 1 || IRvalues[2] == 1) {
+      isTurning = false;
+    } else {
+    
+
 
      if (turnDirection == "left") {
 
@@ -113,6 +118,7 @@ void motorLogic() {
 
 
      }
+    }
    }
 
 

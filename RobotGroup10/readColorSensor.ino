@@ -26,7 +26,6 @@ void readColorSensor() {
   Serial.print(avgBlue);
   Serial.print(" W(clear)= ");
   Serial.println(avgWhite);
-  delay(100);
 
   if(avgRed>20&&avgGreen>15) {
     WiFiDrv::analogWrite(27, 0);
